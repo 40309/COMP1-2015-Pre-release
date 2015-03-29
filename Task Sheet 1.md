@@ -6,17 +6,17 @@ This series of tasks focuses on validation i.e. ensuring that the values entered
 ##Task 1 - Improving the Sample Message Input
 When you first run the program you are presented with the option of running the **sample game** or starting a **new game**:
 
-![](images/sample_message.png)
+![Sample Message](http://s25.postimg.org/3m62gk3f3/sample_message.png)
 
 Unfortunately, this produces an error if you enter anything other than `y` or `n`:
 
-![](images/sample_message_error.png)
+![Sample Message Error](http://s25.postimg.org/dnawpvgi7/sample_message_error.png)
 
 The function `GetTypeOfGame()` is responsible for getting this message from the user.
 
 Rather than giving an error message the program should provide suitable feedback to the user and allow them to try again:
 
-![](images/sample_message_validation.png)
+![Sample Message Validation](http://s25.postimg.org/xfd2p5s27/sample_message_validation.png)
 
 Now attempt the **exercises** below.
 
@@ -36,7 +36,7 @@ To make a move in this game you must provide the program with the following:
 
 This is done by providing the program with responses in the form of co-ordinates for the starting and ending board positions:
 
-![](images/board_move_validation.jpg)
+![Board Move Validation](http://s25.postimg.org/9cw8uabf3/board_move_validation.jpg)
 
 Attempt the **exercises** below.
 
@@ -51,7 +51,7 @@ Attempt the **exercises** below.
 
     This message might look like the following:
 
-    ![](images/board_move_message.png)
+    ![Board Move Message](http://s25.postimg.org/4jbziilhr/board_move_message.png)
 
 ---
 
@@ -60,7 +60,7 @@ The program expects that you will enter a **two digit** value for the co-ordinat
 
 In addition, if you attempt to enter an **erroneous** value the program currently crashes with a `ValueError`:
 
-![](images/rank_file_error.png)
+![Rank File Error](http://s25.postimg.org/mjlott74f/rank_file_error.png)
 
 Attempt the **exercises** below.
 
@@ -68,7 +68,7 @@ Attempt the **exercises** below.
 1. **Identify** the function responsible for getting the move from the user.
 2. **Improve** this function so that the start and end positions are validated separately. This means that an appropriate error message should be displayed as soon as invalid data has been entered:
 
-    ![](images/rank_file_feedback.png)
+    ![Rank File Feedback](http://s25.postimg.org/fziwngt3j/rank_file_feedback.png)
 
 ---
 
@@ -77,7 +77,7 @@ It is often the case in games such as **Capture the Sarrum** and **Chess** that 
 
 To approximate this functionality the program should ask you to confirm the move before going ahead and making it:
 
-![](images/move_confirmation.png)
+![Move Confirmation](http://s25.postimg.org/e01sp55cf/move_confirmation.png)
 
 If you do not confirm then the program should ask you to select another move.
 
@@ -94,7 +94,7 @@ Currently the game provides no feedback as to what has just happened. This is tr
 
 After the move has been confirmed the game should present the user with a message similar to the one below:
 
-![](images/piece_removal_confirmation.png)
+![Piece Removal Confirmation](http://s25.postimg.org/96i1ka8un/piece_removal_confirmation.png)
 
 Attempt the **exercises** below.
 
@@ -109,7 +109,7 @@ Attempt the **exercises** below.
 ##Task 6 - Redum Promotion Confirmation
 When the **Redum** piece reaches the opposing side of the board it is promoted to a **Marzaz Pani**. Currently the game does change the piece but it does not confirm that this has occurred.
 
-![](images/redum_promotion_confirmation.png)
+![Redum Promotion Conformation](http://s25.postimg.org/evya4lf0v/redum_promotion_confirmation.png)
 
 It would be better if the game displayed a message similar to the one above.
 
@@ -124,7 +124,7 @@ Attempt the **exercises** below.
 ##Task 7 - Board Layout
 The presentation of the game board is currently not very good. It would be helpful if it provided reminders that the rank is vertical and the file horizontal, for instance:
 
-![](images/improved_board.png)
+![Improved Board](http://s25.postimg.org/mby1xaw5r/improved_board.png)
 
 Attempt the **exercises** below.
 
@@ -174,7 +174,7 @@ Before this happens the King is generally placed in **check** by an opposing pie
 
 Currently the game does not indicate to the player that their Sarrum has been placed in check by the other player. It would be good if a message was displayed indicating that the last move resulted in the Sarrum being in check:
 
-![](images/check_message.png)
+![Check Message](http://s25.postimg.org/in7uqwspb/check_message.png)
 
 If the player then attempts to make a move that does not resolve the check then the following message should be displayed:
 
