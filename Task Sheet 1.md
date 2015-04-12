@@ -21,8 +21,8 @@ Rather than giving an error message the program should provide suitable feedback
 Now attempt the **exercises** below.
 
 ---
-1. **Improve** this function so that all **valid** input (`y`,`Y`,`Yes`,`n`,`N`,`No` etc.) is accepted.
-2. **Ensure** that this function is being used in the main program to get value for `SampleGame`.
+1. **Improve** this function so that all **valid** input (`y`,`Y`,`Yes`,`n`,`N`,`No` etc.) is accepted. ***DONE***
+2. **Ensure** that this function is being used in the main program to get value for `SampleGame`. ***DONE***
 
 ---
 
@@ -46,8 +46,9 @@ Attempt the **exercises** below.
 3. **Explain** what happens when a piece is moved off the **top** edge of the board.
 4. **Explain** what happens when a piece is moved off the **bottom** edge of the board.
 5. **Explain** any differences you encountered whilst attempting the above questions (1-4).
-6. **Identify** the function responsible for validating whether a move is acceptable or not.
-7. **Improve** the function identified in question 6 so that an appropriate message is displayed if the move is not valid. The user should then be prompted to reenter the co-ordinates of the move.
+6. **Identify** the function responsible for validating whether a move is acceptable or not. **DONE**
+`CheckMoveIsLegal(Board, StartRank, StartFile, FinishRank, FinishFile, WhoseTurn)`
+7. **Improve** the function identified in question 6 so that an appropriate message is displayed if the move is not valid. The user should then be prompted to reenter the co-ordinates of the move. **DONE**
 
     This message might look like the following:
 
@@ -65,8 +66,9 @@ In addition, if you attempt to enter an **erroneous** value the program currentl
 Attempt the **exercises** below.
 
 ---
-1. **Identify** the function responsible for getting the move from the user.
-2. **Improve** this function so that the start and end positions are validated separately. This means that an appropriate error message should be displayed as soon as invalid data has been entered:
+1. **Identify** the function responsible for getting the move from the user.**DONE**
+`GetMove(StartSquare, FinishSquare)`
+2. **Improve** this function so that the start and end positions are validated separately. This means that an appropriate error message should be displayed as soon as invalid data has been entered: **DONE**
 
     ![Rank File Feedback](http://s25.postimg.org/fziwngt3j/rank_file_feedback.png)
 
@@ -84,8 +86,8 @@ If you do not confirm then the program should ask you to select another move.
 Attempt the **exercises** below.
 
 ---
-1. **Create** a new function called `ConfirmMove()` that will take `StartSquare` and `FinishSquare` as **parameters** and **return** whether the move was confirmed or not.
-2. **Amend** the main program to confirm the move before it is made.
+1. **Create** a new function called `ConfirmMove()` that will take `StartSquare` and `FinishSquare` as **parameters** and **return** whether the move was confirmed or not. **DONE**
+2. **Amend** the main program to confirm the move before it is made. **DONE**
 
 ---
 
@@ -102,6 +104,7 @@ Attempt the **exercises** below.
 1. **Describe** what is returned by the game when a position on the board containing a piece is selected e.g. `Board[4][3]` (if there where a piece in that position).
 2. **Create** a new function called `GetPieceName()` that takes the value identified in question 1 and returns the full name of **both** the **colour** and **type** of piece.
 3. **Identify** the function responsible for moving the pieces on the board.
+`def MakeMove(Board, StartRank, StartFile, FinishRank, FinishFile, WhoseTurn):`
 4. **Improve** the function identified in question 3 to make use of the new function `GetPieceName()` to present the user with a message similar to the one in the screenshot above.
 
 ---
@@ -130,7 +133,8 @@ Attempt the **exercises** below.
 
 ---
 1. **Identify** the function where the board is generated to be displayed.
-2. **Amend** this function so that the board closely resembles the one in the screenshot above.
+`def DisplayBoard(Board):`
+2. **Amend** this function so that the board closely resembles the one in the screenshot above.**DONE**
 
 ---
 
@@ -141,9 +145,22 @@ Section B of the COMP1 exam focuses on your understanding of the program source 
 
 ---
 1. Describe each variable role in **your own words**.
+
 2. Give an example of variable from the program code for each variable role (if possible).
 
 ---
+|Role|Description|Example|
+|-|-|-|
+|Fixed Value|This is a value which will not be changed. This number will be set from the start.|`FinishSquare = 0`|
+|Stepper|This is used to keep track of something.|`for Count in range(BOARDDIMENSION + 1):`(count)|
+|Most Recent Holder|This basically holds the latest value encountered.|`temp = str(StartSquare)`|
+|Gatherer|This basically gathers the sum of all values and keeps a running total of values.|-|
+|Transformation|This variable always can get assigned a new value when the code runs or iterates.|-|
+|Follower|This variable copies the old value so that, the other variable can get assigned the new value.|-|
+|Temporary| This variable holds values for a short time until it appends or assigns it to a different variable.|`temp = str(StartSquare)`|
+
+
+
 
 ##Task 9 - Functions and parameters
 When **binding** arguments to parameters they are passed into the function either *by value* or *by reference*. In some programming languages you can specify which method to use but in Python this is done automatically for you. Some values are passed by value and others by reference - it depends on the value's **data type**.
@@ -163,9 +180,80 @@ The AS textbook has a good section on passing by value and passing by reference 
 
 ---
 1. Describe the difference between passing by value and passing by reference in **your own words**.
+
+ - Passing by Value:  Is when you have a copy of the original and you can modify it without altering the original
+ - Passing by Reference: Is when you have the original and you can modify(work with) the original 
+
 2. For each function in the program identify the mechanism using to pass each parameter. **Note**: this task will take a while but it will improve your understanding of the program and by useful for the exam.
 
 ---
+`def CreateBoard():` = No Parameters
+`def DisplayWhoseTurnItIs(WhoseTurn):` = By Value
+`def GetTypeOfGame():` = No Parameters
+`def DisplayWinner(WhoseTurn):` = By Value
+`def DisplayBoard(Board):` = By Reference
+`def CheckRedumMoveIsLegal(Board, StartRank, StartFile, FinishRank, FinishFile, ColourOfPiece):` =
+Board = Reference
+StartRank = By Value
+StartFile= By Value
+FinishRank = By Value
+FinishFile = By Value
+ColourofPiece = By Value
+`def CheckSarrumMoveIsLegal(Board, StartRank, StartFile, FinishRank, FinishFile):` = 
+Board = Reference
+StartRank = By Value
+StartFile= By Value
+FinishRank = By Value
+FinishFile = By Value
+`def CheckGisgigirMoveIsLegal(Board, StartRank, StartFile, FinishRank, FinishFile):`
+Board = Reference
+StartRank = By Value
+StartFile= By Value
+FinishRank = By Value
+FinishFile = By Value
+`def CheckNabuMoveIsLegal(Board, StartRank, StartFile, FinishRank, FinishFile):`=
+Board = Reference
+StartRank = By Value
+StartFile= By Value
+FinishRank = By Value
+FinishFile = By Value
+`def CheckMarzazPaniMoveIsLegal(Board, StartRank, StartFile, FinishRank, FinishFile):`
+Board = Reference
+StartRank = By Value
+StartFile= By Value
+FinishRank = By Value
+FinishFile = By Value
+`def CheckEtluMoveIsLegal(Board, StartRank, StartFile, FinishRank, FinishFile):` =
+Board = Reference
+StartRank = By Value
+StartFile= By Value
+FinishRank = By Value
+FinishFile = By Value
+`def CheckMoveIsLegal(Board, StartRank, StartFile, FinishRank, FinishFile, WhoseTurn):` =
+Board = Reference
+StartRank = By Value
+StartFile= By Value
+FinishRank = By Value
+FinishFile = By Value
+WhoseTurn = By Value
+`def InitialiseBoard(Board, SampleGame):` =
+Board = Reference
+SampleGame = By Value
+`def GetMove(StartSquare, FinishSquare):`
+StartSquare = By Value
+FinishSquare = By Value
+`def ConformMove(StartSquare, FinishSquare):` = 
+StartSquare = By Value
+FinishSquare = By Value
+`def MakeMove(Board, StartRank, StartFile, FinishRank, FinishFile, WhoseTurn):` =
+Board = Reference
+StartRank = By Value
+StartFile= By Value
+FinishRank = By Value
+FinishFile = By Value
+WhoseTurn = By Value
+
+
 
 ##Task 10 - Sarrum in Check Validation
 A Game of Capture the Sarrum ends when the Sarrum piece is captured. This is similar to the way that a game of chess ends once the King is in **check mate**.
@@ -178,7 +266,7 @@ Currently the game does not indicate to the player that their Sarrum has been pl
 
 If the player then attempts to make a move that does not resolve the check then the following message should be displayed:
 
-![](images/check_validation.png)
+![](http://s25.postimg.org/qh8gcb0i7/check_validation.png)
 
 If the move entered does get the Sarrum out of check then the game should proceed as normal.
 
