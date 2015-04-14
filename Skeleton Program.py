@@ -46,14 +46,14 @@ def CheckIfGameWillBeWon(Board, FinishRank, FinishFile):
 def DisplayBoard(Board):
   print()
   for RankNo in range(1, BOARDDIMENSION + 1):
-    print("     _ _ _ _ _ _ _ _ _ _ _ _")
-    print(RankNo, end="   ")
+    print("       _ _ _ _ _ _ _ _ _ _ _ _")
+    print("R",RankNo, end="   ")
     for FileNo in range(1, BOARDDIMENSION + 1):
       print("|" + Board[RankNo][FileNo], end="")
     print("|")
-  print("     _ _ _ _ _ _ _ _ _ _ _ _")
+  print("       _ _ _ _ _ _ _ _ _ _ _ _")
   print()
-  print("     R1 R2 R3 R4 R5 R6 R7 R8")
+  print("       F1 F2 F3 F4 F5 F6 F7 F8")
   print()
   print()    
 
@@ -231,19 +231,107 @@ def ConformMove(StartSquare, FinishSquare):
   conformation = input("Confirm move(Yes/No): ")
   conformation = conformation.upper()
   conformation = conformation[:1]
+  if conformation == "Y":
+    print("Move confirmed")
+  elif conformation == "N":
+    print("Move Cancelled")
   return conformation
     
 def MakeMove(Board, StartRank, StartFile, FinishRank, FinishFile, WhoseTurn):
   if WhoseTurn == "W" and FinishRank == 1 and Board[StartRank][StartFile][1] == "R":
     Board[FinishRank][FinishFile] = "WM"
     Board[StartRank][StartFile] = "  "
+    print("White Redum promoted to Marzaz Pani.")
   elif WhoseTurn == "B" and FinishRank == 8 and Board[StartRank][StartFile][1] == "R":
     Board[FinishRank][FinishFile] = "BM"
     Board[StartRank][StartFile] = "  "
+    print("Black Redum promoted to Marzaz Pani.")
   else:
     Board[FinishRank][FinishFile] = Board[StartRank][StartFile]
-    Board[StartRank][StartFile] = "  "
+    
+def GetPieceName(StartSquare, FinishSquare):#Task 5
+  
+  StartSquare = str(StartSquare)
+  FinishSquare = str(FinishSquare)
+  if StartSquare[:1] == "W":
+    colour = "White"
+  else:
+    colour = "Black"
+  if StartSquare[-1:] == "S":
+    piece = "Sarrum"
+  elif StartSquare[-1:] == "M":
+    piece = "Marzaz pani"
+  elif StartSquare[-1:] == "N":
+    piece = "Nabu"
+  elif StartSquare[-1:] == "E":
+    piece = "Etlu"
+  elif StartSquare[-1:] == "G":
+    piece = "Gisgigir"
+  else:
+    piece = "Redum"
+  #Second part
+  if FinishSquare[:1] == "W":
+    colour_2 = "White"
+  else:
+    colour_2 = "Black"
+  if FinishSquare[-1:] == "S":
+    piece_2 = "Sarrum"
+  elif FinishSquare[-1:] == "M":
+    piece_2 = "Marzaz pani"
+  elif FinishSquare[-1:] == "N":
+    piece_2 = "Nabu"
+  elif FinishSquare[-1:] == "E":
+    piece_2 = "Etlu"
+  elif FinishSquare[-1:] == "G":
+    piece_2 = "Gisgigir"
+  else:
+    piece_2 = "Redum"
+  if not(colour == colour_2):
+    print()
+    print("{0} {1} takes {2} {3}".format(colour,piece,colour_2,piece_2))
+  Board[StartRank][StartFile] = "  "
 
+def GetPieceName(StartSquare, FinishSquare):#Task 5
+  StartSquare = str(StartSquare)
+  FinishSquare = str(FinishSquare)
+  if StartSquare[:1] == "W":
+    colour = "White"
+  else:
+    colour = "Black"
+  if StartSquare[-1:] == "S":
+    piece = "Sarrum"
+  elif StartSquare[-1:] == "M":
+    piece = "Marzaz pani"
+  elif StartSquare[-1:] == "N":
+    piece = "Nabu"
+  elif StartSquare[-1:] == "E":
+    piece = "Etlu"
+  elif StartSquare[-1:] == "G":
+    piece = "Gisgigir"
+  else:
+    piece = "Redum"
+  #Second part
+  if FinishSquare[:1] == "W":
+    colour_2 = "White"
+  else:
+    colour_2 = "Black"
+  if FinishSquare[-1:] == "S":
+    piece_2 = "Sarrum"
+  elif FinishSquare[-1:] == "M":
+    piece_2 = "Marzaz pani"
+  elif FinishSquare[-1:] == "N":
+    piece_2 = "Nabu"
+  elif FinishSquare[-1:] == "E":
+    piece_2 = "Etlu"
+  elif FinishSquare[-1:] == "G":
+    piece_2 = "Gisgigir"
+  else:
+    piece_2 = "Redum"
+  if not(colour == colour_2):
+    print()
+    print("{0} {1} takes {2} {3}".format(colour,piece,colour_2,piece_2))
+  
+  
     
 if __name__ == "__main__":
   Board = CreateBoard() #0th index not used
@@ -253,7 +341,7 @@ if __name__ == "__main__":
   conformation = "N"
   while PlayAgain == "Y":
     WhoseTurn = "W"
-    GameOver = False
+    GameOver = False 
     TypeOfGame = GetTypeOfGame()
     SampleGame = TypeOfGame
     if ord(SampleGame) >= 97 and ord(SampleGame) <= 122:
@@ -267,6 +355,7 @@ if __name__ == "__main__":
         while conformation == "N":
           StartSquare, FinishSquare = GetMove(StartSquare, FinishSquare)
           conformation = ConformMove(StartSquare, FinishSquare)
+        conformation = "N"
         StartRank = StartSquare % 10
         StartFile = StartSquare // 10
         FinishRank = FinishSquare % 10
@@ -274,7 +363,7 @@ if __name__ == "__main__":
         MoveIsLegal = CheckMoveIsLegal(Board, StartRank, StartFile, FinishRank, FinishFile, WhoseTurn)
         if not(MoveIsLegal):
           print("That is not a legal move - please try again")
-          conformation = "N"
+      GetPieceName(StartSquare,FinishSquare)
       GameOver = CheckIfGameWillBeWon(Board, FinishRank, FinishFile)
       MakeMove(Board, StartRank, StartFile, FinishRank, FinishFile, WhoseTurn)
       if GameOver:
