@@ -5,6 +5,97 @@
 
 BOARDDIMENSION = 8
 
+def display_menu():
+  print("MAIN MENU")
+  print()
+  print("1. Start New Game")
+  print("2. Load Existing Game")
+  print("3. Play Sample Game")
+  print("4. View High Scores")
+  print("5. Settings")
+  print("6. Quit Program")
+  print()
+
+def get_menu_selection():
+  checker = False
+  while checker == False:
+    choice = input("Please select an option: ")
+    choice = choice.lower()
+    choice = choice[:1]
+    if choice in ["1","2","3","4","5","6"]:
+      checker = True
+    print()
+  return choice
+
+def make_selection(choice):
+  if choice == "1":
+    #Start a New Game
+    print()
+  elif choice == "2":
+    #Load Existing Game
+    print()
+  elif choice == "3":
+    #Play Sample Game
+    print()
+  elif choice == "4":
+    #View High Score
+    print()
+  elif choice == "5":
+    #View Settings
+    print()
+  elif choice == "6":
+    #Quit Program
+    choice = 6
+    print()
+
+def play_game():
+  StartSquare = 0 
+  FinishSquare = 0
+  PlayAgain = "Y"
+  conformation = "N"
+  while PlayAgain == "Y":
+    WhoseTurn = "W"
+    GameOver = False 
+    TypeOfGame = GetTypeOfGame()
+    SampleGame = TypeOfGame
+    if ord(SampleGame) >= 97 and ord(SampleGame) <= 122:
+      SampleGame = chr(ord(SampleGame) - 32)
+    InitialiseBoard(Board, SampleGame)
+    while not(GameOver):
+      DisplayBoard(Board)
+      DisplayWhoseTurnItIs(WhoseTurn)
+      MoveIsLegal = False
+      while not(MoveIsLegal):
+        while conformation == "N":
+          StartSquare, FinishSquare = GetMove(StartSquare, FinishSquare)
+          conformation = ConformMove(StartSquare, FinishSquare)
+        conformation = "N"
+        StartRank = StartSquare % 10
+        StartFile = StartSquare // 10
+        FinishRank = FinishSquare % 10
+        FinishFile = FinishSquare // 10
+        MoveIsLegal = CheckMoveIsLegal(Board, StartRank, StartFile, FinishRank, FinishFile, WhoseTurn)
+        if not(MoveIsLegal):
+          print("That is not a legal move - please try again")
+      GetPieceName(StartSquare,FinishSquare)
+      GameOver = CheckIfGameWillBeWon(Board, FinishRank, FinishFile)
+      MakeMove(Board, StartRank, StartFile, FinishRank, FinishFile, WhoseTurn)
+      if GameOver:
+        DisplayWinner(WhoseTurn)
+      if WhoseTurn == "W":
+        WhoseTurn = "B"
+      else:
+        WhoseTurn = "W"
+    checker = False
+    while checker == False: 
+      PlayAgain = input("Do you want to play again (enter Y for Yes)? ")
+      PlayAgain = PlayAgain.upper()
+      PlayAgain = PlayAgain[:1]
+      if PlayAgain == "Y" or PlayAgain == "N":
+        checker = True
+      else:
+        print("Please enter a valid input(Yes or No)")
+
 def CreateBoard():
   Board = []
   for Count in range(BOARDDIMENSION + 1):
@@ -335,43 +426,11 @@ def GetPieceName(StartSquare, FinishSquare):#Task 5
     
 if __name__ == "__main__":
   Board = CreateBoard() #0th index not used
-  StartSquare = 0 
-  FinishSquare = 0
-  PlayAgain = "Y"
-  conformation = "N"
-  while PlayAgain == "Y":
-    WhoseTurn = "W"
-    GameOver = False 
-    TypeOfGame = GetTypeOfGame()
-    SampleGame = TypeOfGame
-    if ord(SampleGame) >= 97 and ord(SampleGame) <= 122:
-      SampleGame = chr(ord(SampleGame) - 32)
-    InitialiseBoard(Board, SampleGame)
-    while not(GameOver):
-      DisplayBoard(Board)
-      DisplayWhoseTurnItIs(WhoseTurn)
-      MoveIsLegal = False
-      while not(MoveIsLegal):
-        while conformation == "N":
-          StartSquare, FinishSquare = GetMove(StartSquare, FinishSquare)
-          conformation = ConformMove(StartSquare, FinishSquare)
-        conformation = "N"
-        StartRank = StartSquare % 10
-        StartFile = StartSquare // 10
-        FinishRank = FinishSquare % 10
-        FinishFile = FinishSquare // 10
-        MoveIsLegal = CheckMoveIsLegal(Board, StartRank, StartFile, FinishRank, FinishFile, WhoseTurn)
-        if not(MoveIsLegal):
-          print("That is not a legal move - please try again")
-      GetPieceName(StartSquare,FinishSquare)
-      GameOver = CheckIfGameWillBeWon(Board, FinishRank, FinishFile)
-      MakeMove(Board, StartRank, StartFile, FinishRank, FinishFile, WhoseTurn)
-      if GameOver:
-        DisplayWinner(WhoseTurn)
-      if WhoseTurn == "W":
-        WhoseTurn = "B"
-      else:
-        WhoseTurn = "W"
-    PlayAgain = input("Do you want to play again (enter Y for Yes)? ")
-    if ord(PlayAgain) >= 97 and ord(PlayAgain) <= 122:
-      PlayAgain = chr(ord(PlayAgain) - 32)
+  choice = None
+  while choice != "6":
+    display_menu()
+    choice = get_menu_selection()
+    make_selection(choice)
+  print("Program Closed")
+  print("Thank you for using this program")
+  
