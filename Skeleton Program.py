@@ -5,7 +5,7 @@
 
 BOARDDIMENSION = 8
 
-def display_menu():
+def display_menu():#Displays the Menu
   print("MAIN MENU")
   print()
   print("1. Start New Game")
@@ -16,26 +16,28 @@ def display_menu():
   print("6. Quit Program")
   print()
 
-def get_menu_selection():
+def get_menu_selection():#Gets the Menu Choice of the User
   checker = False
   while checker == False:
     choice = input("Please select an option: ")
-    choice = choice.lower()
-    choice = choice[:1]
+    choice = choice.lower()#makes users input all lower case
+    choice = choice[:1]#gets first letter of string
     if choice in ["1","2","3","4","5","6"]:
       checker = True
     print()
   return choice
 
-def make_selection(choice):
+def make_selection(choice):#Loads Function depending on Menu Choice
   if choice == "1":
     #Start a New Game
+    play_game(choice)
     print()
   elif choice == "2":
     #Load Existing Game
     print()
   elif choice == "3":
     #Play Sample Game
+    play_game(choice)
     print()
   elif choice == "4":
     #View High Score
@@ -48,18 +50,50 @@ def make_selection(choice):
     choice = 6
     print()
 
-def play_game():
+def display_option():
+  print()
+  print("Options")
+  print()
+  print("1. Save Game")
+  print("2. Quit to Menu")
+  print("3. Return to Game")
+  print()
+
+def get_option_selection():
+  checker = False
+  while checker == False:
+    user_input = input("Please select an option: ")
+    if user_input in ["1","2","3"]:
+      checker = True
+    else:
+      print("Please enter a valid input")
+  return user_input
+
+def make_option_selection(user_input):
+  if user_input == "1":
+    #Save Game
+    print()
+  elif user_input == "2":
+    #Quit to Menu
+    print()
+  elif user_input == "3":
+    #Return to Game
+    option = None
+    print()
+  return option
+
+def play_game(choice):
   StartSquare = 0 
   FinishSquare = 0
   PlayAgain = "Y"
   conformation = "N"
   while PlayAgain == "Y":
     WhoseTurn = "W"
-    GameOver = False 
-    TypeOfGame = GetTypeOfGame()
-    SampleGame = TypeOfGame
-    if ord(SampleGame) >= 97 and ord(SampleGame) <= 122:
-      SampleGame = chr(ord(SampleGame) - 32)
+    GameOver = False
+    if choice == "3":
+      SampleGame = "Y"
+    else:
+      SampleGame = "N"
     InitialiseBoard(Board, SampleGame)
     while not(GameOver):
       DisplayBoard(Board)
@@ -290,30 +324,41 @@ def InitialiseBoard(Board, SampleGame):
                     
 def GetMove(StartSquare, FinishSquare):
   checker = False
-  while checker == False:
-    try:
-      StartSquare = int(input("Enter coordinates of square containing piece to move (file first): "))
-    except ValueError:
-      pass
-    temp = str(StartSquare)
-    temp = len(temp)
-    if temp == 2:
-      checker = True
-    else:
-      print("Please provide both FILE and RANK for this move")
-  checker = False
-  while checker == False:
-    try:
-      FinishSquare = int(input("Enter coordinates of square to move piece to (file first): "))
-    except ValueError:
-      pass
-    temp = str(FinishSquare)
-    temp = len(temp)
-    if temp == 2:
-      checker = True
-    else:
-      print("Please provide both FILE and RANK for this move")
-  return StartSquare, FinishSquare
+  for count in range(1):
+    while checker == False:
+      try:
+        StartSquare = int(input("Enter coordinates of square containing piece to move (file first) or type '-1' for menu: "))
+      except ValueError:
+        pass
+      if StartSquare == -1:
+        display_option()
+        user_input = get_option_selection()
+        option = make_option_selection(user_input)
+        if user_input == "3":
+          break
+      temp = str(StartSquare)
+      temp = len(temp)
+      if temp == 2:
+        checker = True
+      else:
+        print("Please provide both FILE and RANK for this move")
+    checker = False
+    while checker == False:
+      if user_input == "3":
+          break
+      try:
+        FinishSquare = int(input("Enter coordinates of square to move piece to (file first): "))
+      except ValueError:
+        pass
+      temp = str(FinishSquare)
+      temp = len(temp)
+      if temp == 2:
+        checker = True
+      else:
+        print("Please provide both FILE and RANK for this move")
+    if user_input == "3":
+      close = "close"
+  return StartSquare, FinishSquare,close
 
 def ConformMove(StartSquare, FinishSquare):
   StartSquare = str(StartSquare)

@@ -6,11 +6,11 @@ This series of tasks focuses on improving the user interface and functionality o
 ##Task 11 - Main Menu
 When the user first loads the program they are presented with the following option:
 
-![](images/original_menu.png)
+![Original Menu](http://s25.postimg.org/6ixqi4b4f/original_menu.png)
 
 This is fine at the moment as the game has limited functionality. If however, the program is to be improved so that it has additional options available it would be better if a **menu** is presented instead:
 
-![](images/new_menu.png)
+![New Menu](http://s25.postimg.org/f2h4fvjgv/new_menu.png)
 
 To do this the following additional functions are required:
 
@@ -38,7 +38,7 @@ At the moment once a game has been started there is no way to interrupt it aside
 
 An option to recognise a **rogue value** could be added so that an in-game menu could be displayed:
 
-![](images/in_game_menu.png)
+![In Game Menu](http://s25.postimg.org/p1232cswf/in_game_menu.png)
 
 Attempt the **exercises** below.
 
@@ -52,7 +52,7 @@ Attempt the **exercises** below.
 ##Task 13 - Surrendering
 One option that is common in games like Chess is the ability to surrender or forfeit a game. This may be necessary as the player could be in position where there is no way to win but it may require several more moves to actually get to that game state or simply that the player has to go and has no more time to play!
 
-![](images/surrender.png)
+![Surrender](http://s25.postimg.org/ymvnink27/surrender.png)
 
 In the above screenshot the option to surrender has been added to the **in-game** menu and the message displayed to show the winner is appropriate to the situation.
 
@@ -135,11 +135,11 @@ Section B of the COMP1 exam focuses on your understanding of the program source 
 ##Task 16 - Improve Marzaz Pani
 Currently the **Marzaz Pani** piece can move in the following ways:
 
-![](images/marzaz_pani_original.png)
+![Marzaz Pani Original](http://s25.postimg.org/p3lyp6wjz/marzaz_pani_original.png)
 
 It can move **one space** horizontally or vertically in any direction. An improvement would be to make it so that it could also move **diagonally**:
 
-![](images/marzaz_pani_new.png)
+![Marzaz Pani New](http://s25.postimg.org/722tre2j3/marzaz_pani_new.png)
 
 Attempt the **exercise** below.
 
@@ -151,11 +151,11 @@ Attempt the **exercise** below.
 ##Task 17 - Improve Nabu
 Currently the **Nabu** piece can move in the following ways:
 
-![](images/nabu_original.png)
+![Nabu Original](http://s25.postimg.org/6dykm6t73/nabu_original.png)
 
 It can move **one space** diagonally in any direction. An improvement would be to make it so that it could move **any number of spaces** diagonally (so that it was like a Bishop in Chess):
 
-![](images/nabu_new.png)
+![Nabu New](http://s25.postimg.org/uiza3wdhr/nabu_new.png)
 
 Attempt the **exercise** below.
 
@@ -167,11 +167,11 @@ Attempt the **exercise** below.
 ##Task 18 - Improve Etlu
 Currently the **Etlu** piece can move in the following ways:
 
-![](images/etlu_original.png)
+![Etlu Original](http://s25.postimg.org/6gig90wun/etlu_original.png)
 
 It can move **exactly two spaces** in a horizontal or vertical direction and **jump** over pieces that are in its way. An improvement would be to make it so that its movement was like that of a **Knight** in Chess:
 
-![](images/etlu_new.png)
+![Etlu New](http://s25.postimg.org/9omxm2j4f/etlu_new.png)
 
 Attempt the **exercise** below.
 
@@ -183,11 +183,11 @@ Attempt the **exercise** below.
 ##Task 19 - Improve Redum
 The **Redum** piece in Capture the Sarrum is similar to the **Pawn** in Chess. Once difference is that a pawn can move **upto** two spaces on its first move. Currently the **Redum** can only move one:
 
-![](images/redum_original.png)
+![Redum Original](http://s25.postimg.org/umt3k5iz3/redum_original.png)
 
 Each **Redum** piece should have the option of moving either one or two spaces on its opening move **only**:
 
-![](images/redum_new.png)
+![Redum New](http://s25.postimg.org/n83rrrx3j/redum_new.png)
 
 Attempt the **exercises** below.
 
