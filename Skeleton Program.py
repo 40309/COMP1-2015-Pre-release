@@ -111,7 +111,8 @@ def play_game(choice):
         MoveIsLegal = CheckMoveIsLegal(Board, StartRank, StartFile, FinishRank, FinishFile, WhoseTurn)
         if not(MoveIsLegal):
           print("That is not a legal move - please try again")
-      GetPieceName(StartSquare,FinishSquare)
+        GetPieceName(StartSquare, FinishSquare)
+      #GetPieceName(StartSquare,FinishSquare)
       GameOver = CheckIfGameWillBeWon(Board, FinishRank, FinishFile)
       MakeMove(Board, StartRank, StartFile, FinishRank, FinishFile, WhoseTurn)
       if GameOver:
@@ -335,7 +336,7 @@ def GetMove(StartSquare, FinishSquare):
         user_input = get_option_selection()
         option = make_option_selection(user_input)
         if user_input == "3":
-          break
+          print()
       temp = str(StartSquare)
       temp = len(temp)
       if temp == 2:
@@ -344,8 +345,6 @@ def GetMove(StartSquare, FinishSquare):
         print("Please provide both FILE and RANK for this move")
     checker = False
     while checker == False:
-      if user_input == "3":
-          break
       try:
         FinishSquare = int(input("Enter coordinates of square to move piece to (file first): "))
       except ValueError:
@@ -356,9 +355,7 @@ def GetMove(StartSquare, FinishSquare):
         checker = True
       else:
         print("Please provide both FILE and RANK for this move")
-    if user_input == "3":
-      close = "close"
-  return StartSquare, FinishSquare,close
+  return StartSquare, FinishSquare
 
 def ConformMove(StartSquare, FinishSquare):
   StartSquare = str(StartSquare)
@@ -384,9 +381,9 @@ def MakeMove(Board, StartRank, StartFile, FinishRank, FinishFile, WhoseTurn):
     print("Black Redum promoted to Marzaz Pani.")
   else:
     Board[FinishRank][FinishFile] = Board[StartRank][StartFile]
+    Board[StartRank][StartFile] = "  "
     
 def GetPieceName(StartSquare, FinishSquare):#Task 5
-  
   StartSquare = str(StartSquare)
   FinishSquare = str(FinishSquare)
   if StartSquare[:1] == "W":
@@ -424,50 +421,7 @@ def GetPieceName(StartSquare, FinishSquare):#Task 5
     piece_2 = "Redum"
   if not(colour == colour_2):
     print()
-    print("{0} {1} takes {2} {3}".format(colour,piece,colour_2,piece_2))
-  Board[StartRank][StartFile] = "  "
-
-def GetPieceName(StartSquare, FinishSquare):#Task 5
-  StartSquare = str(StartSquare)
-  FinishSquare = str(FinishSquare)
-  if StartSquare[:1] == "W":
-    colour = "White"
-  else:
-    colour = "Black"
-  if StartSquare[-1:] == "S":
-    piece = "Sarrum"
-  elif StartSquare[-1:] == "M":
-    piece = "Marzaz pani"
-  elif StartSquare[-1:] == "N":
-    piece = "Nabu"
-  elif StartSquare[-1:] == "E":
-    piece = "Etlu"
-  elif StartSquare[-1:] == "G":
-    piece = "Gisgigir"
-  else:
-    piece = "Redum"
-  #Second part
-  if FinishSquare[:1] == "W":
-    colour_2 = "White"
-  else:
-    colour_2 = "Black"
-  if FinishSquare[-1:] == "S":
-    piece_2 = "Sarrum"
-  elif FinishSquare[-1:] == "M":
-    piece_2 = "Marzaz pani"
-  elif FinishSquare[-1:] == "N":
-    piece_2 = "Nabu"
-  elif FinishSquare[-1:] == "E":
-    piece_2 = "Etlu"
-  elif FinishSquare[-1:] == "G":
-    piece_2 = "Gisgigir"
-  else:
-    piece_2 = "Redum"
-  if not(colour == colour_2):
-    print()
-    print("{0} {1} takes {2} {3}".format(colour,piece,colour_2,piece_2))
-  
-  
+    print("{0} {1} takes {2} {3}".format(colour,piece,colour_2,piece_2))  
     
 if __name__ == "__main__":
   Board = CreateBoard() #0th index not used
