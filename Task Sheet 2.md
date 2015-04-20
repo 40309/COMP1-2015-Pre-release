@@ -23,6 +23,11 @@ Attempt the **exercises** below.
 
 ---
 1. Attempt to **explain** the purpose of each of the new functions listed above and indicate any **parameters** or **return** values that each of them will require.
+ `display_menu()`: This displays the menu to the user
+ `get_menu_selection()`: This get the choice of the user.
+ This function also returns the `choice` of the user.
+ `make_selection(choice)`: This carries out the selection of the user. The parameter is the user input from the previous function and uses the variable to select the  
+  `play_game()`: This is the main game function(includes sample game and main game)
 2. **Write** the function `display_menu()` and add it to the existing program.
 3. **Write** the function `get_menu_selection()` including any **validation** that is necessary and add it to the existing program.
 4. **Write** the function `make_selection()` and add it to the existing program.

@@ -19,35 +19,41 @@ def display_menu():#Displays the Menu
 def get_menu_selection():#Gets the Menu Choice of the User
   checker = False
   while checker == False:
-    choice = input("Please select an option: ")
-    choice = choice.lower()#makes users input all lower case
-    choice = choice[:1]#gets first letter of string
-    if choice in ["1","2","3","4","5","6"]:
+    
+    try:
+      choice = int(input("Please select an option: "))
+    except ValueError:
+                   pass          
+    if 1 <= choice <=6:
       checker = True
+    else:
+      print("Please enter a valid input(1-6)")
     print()
   return choice
 
 def make_selection(choice):#Loads Function depending on Menu Choice
-  if choice == "1":
+  if choice == 1:
     #Start a New Game
-    play_game(choice)
+    play_game("N")
     print()
-  elif choice == "2":
+  elif choice == 2:
     #Load Existing Game
     print()
-  elif choice == "3":
+  elif choice == 3:
     #Play Sample Game
-    play_game(choice)
+    play_game("Y")
     print()
-  elif choice == "4":
+  elif choice == 4:
     #View High Score
+    pass
     print()
-  elif choice == "5":
+  elif choice == 5:
     #View Settings
+    pass
     print()
-  elif choice == "6":
+  elif choice == 6:
     #Quit Program
-    choice = 6
+    pass
     print()
 
 def display_option():
@@ -86,7 +92,7 @@ def make_option_selection(user_input):
     pass
   return GameOver
 
-def play_game(choice):
+def play_game(SampleGame):
   StartSquare = 0 
   FinishSquare = 0
   PlayAgain = "Y"
@@ -94,10 +100,6 @@ def play_game(choice):
   while PlayAgain == "Y":
     WhoseTurn = "W"
     GameOver = False
-    if choice == "3":
-      SampleGame = "Y"
-    else:
-      SampleGame = "N"
     InitialiseBoard(Board, SampleGame)
     while not(GameOver):
       DisplayBoard(Board)
@@ -245,9 +247,11 @@ def CheckNabuMoveIsLegal(Board, StartRank, StartFile, FinishRank, FinishFile):
     CheckNabuMoveIsLegal = True
   return CheckNabuMoveIsLegal
 
-def CheckMarzazPaniMoveIsLegal(Board, StartRank, StartFile, FinishRank, FinishFile):
+def CheckMarzazPaniMoveIsLegal(Board, StartRank, StartFile, FinishRank, FinishFile): #Task 16
   CheckMarzazPaniMoveIsLegal = False
   if (abs(FinishFile - StartFile) == 1 and abs(FinishRank - StartRank) == 0) or (abs(FinishFile - StartFile) == 0 and abs(FinishRank - StartRank) ==1):
+    CheckMarzazPaniMoveIsLegal = True
+  elif abs(FinishFile - StartFile) == 1 and abs(FinishRank - StartRank) == 1:
     CheckMarzazPaniMoveIsLegal = True
   return CheckMarzazPaniMoveIsLegal
 
@@ -341,32 +345,27 @@ def GetMove(StartSquare, FinishSquare):
       if StartSquare == -1:
         display_option()
         user_input = get_option_selection()
-        GameOver = make_option_selection(user_input)
-        if user_input == ["4"]:
-          print("Working")
-          checker = True
       temp = str(StartSquare)
       temp = len(temp)
       if temp == 2:
         checker = True
       else:
         print("Please provide both FILE and RANK for this move")
-    if user_input == ["4"]:
-      print("NOT WORKING")
-      pass
+    if StartSquare == -1:
+      FinishSquare = None
     else:
       checker = False
-    while checker == False:
-      try:
-        FinishSquare = int(input("Enter coordinates of square to move piece to (file first): "))
-      except ValueError:
-        pass
-      temp = str(FinishSquare)
-      temp = len(temp)
-      if temp == 2:
-        checker = True
-      else:
-        print("Please provide both FILE and RANK for this move")
+      while checker == False:
+        try:
+          FinishSquare = int(input("Enter coordinates of square to move piece to (file first): "))
+        except ValueError:
+          pass
+        temp = str(FinishSquare)
+        temp = len(temp)
+        if temp == 2:
+          checker = True
+        else:
+          print("Please provide both FILE and RANK for this move")
   return StartSquare, FinishSquare, GameOver
 
 def ConformMove(StartSquare, FinishSquare):
