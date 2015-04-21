@@ -19,12 +19,12 @@ def display_menu():#Displays the Menu
 def get_menu_selection():#Gets the Menu Choice of the User
   checker = False
   while checker == False:
+    
     try:
       choice = int(input("Please select an option: "))
     except ValueError:
                    pass          
     if 1 <= choice <=6:
-      
       checker = True
     else:
       print("Please enter a valid input(1-6)")
@@ -79,20 +79,21 @@ def get_option_selection():
       print("Please enter a valid input")
   return user_input
 
-def make_option_selection(user_input):
-  if user_input == "1":
-    #Save Game
-    pass
-  elif user_input == "2":
-    #Quit to Menu
-    pass
-  elif user_input == "3":
-    #Return to Game
-    pass
-  elif user_input == "4":
-    #Surrender
-    pass
-  #return needed later
+##def make_option_selection(user_input):
+##  if user_input == 1:
+##    #Save Game
+##    pass
+##  elif user_input == 2:
+##    #Quit to Menu
+##    pass
+##  elif user_input == 3:
+##    #Return to Game
+##    pass
+##  elif user_input == 4:
+##    GameOver = True
+##    #Surrender
+##    pass
+##  return GameOver
 
 def play_game(SampleGame):
   StartSquare = 0 
@@ -111,30 +112,17 @@ def play_game(SampleGame):
         while conformation == "N":
           StartSquare, FinishSquare = GetMove(StartSquare, FinishSquare)
           if StartSquare == None:
-            conformation = "Y"
+            conformation = True
           else:
             conformation = ConformMove(StartSquare, FinishSquare)
-        if StartSquare == None:#SURRENDERING
-          GameOver = True
-          MoveIsLegal = True
-          PlayAgain = "N"
-          print()
-          print("Surrendering...")
-          
-          if WhoseTurn == "W":
-            print("Black Surrendered. White Wins !")
-          else:
-            print("White Surrendered. Black wins!")
-        elif StartSquare != None and conformation == "Y":
+        if StartSquare != None:
           StartRank = StartSquare % 10
           StartFile = StartSquare // 10
           FinishRank = FinishSquare % 10
           FinishFile = FinishSquare // 10
           MoveIsLegal = CheckMoveIsLegal(Board, StartRank, StartFile, FinishRank, FinishFile, WhoseTurn)
-          conformation = "Y"
           if not(MoveIsLegal):
             print("That is not a legal move - please try again")
-            conformation = "N"
           GetPieceName(StartSquare, FinishSquare)
           GameOver = CheckIfGameWillBeWon(Board, FinishRank, FinishFile)
           MakeMove(Board, StartRank, StartFile, FinishRank, FinishFile, WhoseTurn)
@@ -144,16 +132,26 @@ def play_game(SampleGame):
             WhoseTurn = "B"
           else:
             WhoseTurn = "W"
-    if StartSquare and FinishSquare != None:
-      checker = False
-      while checker == False: 
-          PlayAgain = input("Do you want to play again (enter Y for Yes)? ")
-          PlayAgain = PlayAgain.upper()
-          PlayAgain = PlayAgain[:1]
-          if PlayAgain == "Y" or PlayAgain == "N":
-            checker = True
+          checker = False
+          while checker == False: 
+            PlayAgain = input("Do you want to play again (enter Y for Yes)? ")
+            PlayAgain = PlayAgain.upper()
+            PlayAgain = PlayAgain[:1]
+            if PlayAgain == "Y" or PlayAgain == "N":
+              checker = True
+            else:
+              print("Please enter a valid input(Yes or No)")
+        else:
+          GameOver = True
+          MoveIsLegal = True
+          PlayAgain = "N"
+          print()
+          print("Surrendering...")
+          if WhoseTurn == "W":
+            print("Black Surrendered. White Wins !")
           else:
-            print("Please enter a valid input(Yes or No)")
+            print("White Surrendered. Black wins!")
+          
 
 def CreateBoard():
   Board = []
